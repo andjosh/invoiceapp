@@ -4,6 +4,6 @@
 en:
  time:
    formats:
-     long_date: %A, %b %d %Y
-     short_date: %B %d, %Y
-     date_with_time: %A, %b %d %Y at %H:%M
+     long_date: '%A, %b %d %Y'
+     short_date: '%B %d, %Y'
+     date_with_time: '%A, %b %d %Y at %H:%M'
