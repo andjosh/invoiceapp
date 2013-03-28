@@ -1,0 +1,13 @@
+Thu, 28 Mar 2013 00:27:03 -0500
+doc/README_FOR_APP	Wed, 27 Mar 2013 21:33:40 -0500
+app/controllers/admin/base_controller.rb	Wed, 27 Mar 2013 21:33:40 -0500
+app/controllers/admin/users_controller.rb	Wed, 27 Mar 2013 21:33:40 -0500
+app/controllers/application_controller.rb	Wed, 27 Mar 2013 21:33:40 -0500
+app/controllers/pages_controller.rb	Wed, 27 Mar 2013 21:33:40 -0500
+app/controllers/users/omniauth_callbacks_controller.rb	Wed, 27 Mar 2013 21:33:40 -0500
+app/helpers/admin/base_helper.rb	Wed, 27 Mar 2013 21:33:40 -0500
+app/helpers/admin/users_helper.rb	Wed, 27 Mar 2013 21:33:40 -0500
+app/helpers/application_helper.rb	Wed, 27 Mar 2013 21:33:40 -0500
+app/helpers/pages_helper.rb	Wed, 27 Mar 2013 21:33:40 -0500
+app/models/role.rb	Wed, 27 Mar 2013 21:33:40 -0500
+app/models/user.rb	Wed, 27 Mar 2013 21:33:40 -0500
