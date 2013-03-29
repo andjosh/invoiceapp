@@ -2,6 +2,21 @@
 	font-family: 'Asul', sans-serif;
 	font-size: 1.02em;
 }
+.navbar{
+	.brand{
+		color: #DDEBEC;
+	}
+	.nav{
+		li{
+			a{
+				color: #DDEBEC;
+			}
+			a:hover{
+				color: #7D93B5;
+			}
+		}
+	}
+}
 .navbar-inner{
 	border: none;
 }
@@ -20,9 +35,43 @@
     background-position: 0 0px;
   }
 }
+.btn-primary{
+	background-image: none;
+	box-shadow: none;
+	-webkit-box-shadow: none;
+}
 a:hover{
 	text-decoration: none;
 }
 hr{
 	border-bottom: none;
+}
+input[type="text"],
+input[type="password"],
+input[type="datetime"],
+input[type="datetime-local"],
+input[type="date"],
+input[type="month"],
+input[type="time"],
+input[type="week"],
+input[type="number"],
+input[type="email"],
+input[type="url"],
+input[type="search"],
+input[type="tel"],
+input[type="color"],
+.uneditable-input{
+	color: #DDEBEC;
+}
+::-webkit-input-placeholder {
+   color: gray !important;
+}
+:-moz-placeholder { /* Firefox 18- */
+   color: gray !important;  
+}
+::-moz-placeholder {  /* Firefox 19+ */
+   color: gray !important;  
+}
+:-ms-input-placeholder {  
+   color: gray !important;  
 }
