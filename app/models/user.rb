@@ -7,9 +7,10 @@ class User < ActiveRecord::Base
   devise :omniauthable
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me, :name, :company_name, :address, :city, :state, :zip, :phone, :office_phone
+  attr_accessible :email, :password, :password_confirmation, :remember_me, :name, :company_name, :address, :city, :state, :zip, :phone, :office_phone, :image, :about, :website
 
   has_and_belongs_to_many :roles
+  has_many :clients
 
   def role?(role)
     return !!self.roles.find_by_name(role.to_s)
@@ -32,7 +33,7 @@ class User < ActiveRecord::Base
     if user = User.find_by_email(data["email"])
       user
     else # Create a user with a stub password.
-      User.create!(:email => data["email"], :password => Devise.friendly_token[0,20])
+      User.create!(:email => data["email"], :password => Devise.friendly_token[0,20], :name => access_token["extra"]["raw_info"]["name"], :image => data["image"], :about => access_token["extra"]["raw_info"]["work"][0]["position"]["name"])
     end
   end
 
