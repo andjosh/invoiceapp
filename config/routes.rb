@@ -15,7 +15,13 @@ BaseApp::Application.routes.draw do
 
   end
 
+  resources :clients, :only => []
+
   resources :users, :only => [:edit, :update]
+
+  resources :users do
+  	resources :clients
+  end
 
   root :to => "pages#index"
 

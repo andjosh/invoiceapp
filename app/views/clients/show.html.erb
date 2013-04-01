@@ -26,11 +26,6 @@
 </p>
 
 <p>
-  <b>User:</b>
-  <%= @client.user_id %>
-</p>
-
-<p>
   <b>Address:</b>
   <%= @client.address %>
 </p>
@@ -61,5 +56,5 @@
 </p>
 
 
-<%= link_to 'Edit', edit_client_path(@client) %> |
-<%= link_to 'Back', clients_path %>
+<%= link_to 'Edit', edit_user_client_path(current_user, @client) %> this client | Back to
+<%= link_to 'your clients', user_clients_path(current_user) %> | <%= link_to 'Delete', @client, method: :delete, data: { confirm: 'Are you sure?' }, :class => "text-error" %>
