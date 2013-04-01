@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
 
   before_filter :find_user, :only => [:edit, :update, :show, :destroy]
+  before_filter :check_user, :only => [:edit, :update, :show, :destroy]
 
   def index
     @search = User.search(params[:search])
@@ -12,11 +13,9 @@ class UsersController < ApplicationController
   end
 
   def edit
-  	:check_user
   end
 
   def update
-  	:check_user
     if @user.update_attributes(params[:user])
       redirect_to edit_user_path(@user), :notice => "Information successfully updated. Way to go!"
     else
