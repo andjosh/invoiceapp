@@ -15,6 +15,7 @@ gem "heroku"
 gem "coffee-rails"
 gem "less-rails"
 gem "twitter-bootstrap-rails"
+gem 'newrelic_rpm'
 
 group :assets do
   gem "therubyracer", :platform => :ruby
