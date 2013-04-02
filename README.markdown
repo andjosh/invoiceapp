@@ -2,7 +2,7 @@
 
 > Everyone's work has value.
 > _What's yours?_
-[www.roninvoice.com](http://www.roninvoice.com)
+[roninvoice.com](http://roninvoice.com)
 
 Allow for proper invoicing and payment. Keep it online. Fall back into paper.
 
