@@ -1,15 +1,14 @@
-<div class="row-fluid center">
+<div class="row-fluid center animated fadeInDown delay1">
   <div class="span8 offset2">
     <h2><%= @user.image ? image_tag(@user.image, :size => '40x40', :class => "img-circle") : "<img src='/assets/user.png'style='height:60px; width:60px;'/>".html_safe %></h2>
   </div>
 </div>
-<div class="row-fluid">
+<div class="row-fluid animated fadeInDown">
   <div class="span12">
     <%= form_for(@user) do |f| %>
       <% if @user.errors.any? %>
         <div id="error_explanation">
           <h2><%= pluralize(@user.errors.count, "error") %> prevented your information from being saved:</h2>
-
           <ul>
           <% @user.errors.full_messages.each do |msg| %>
             <li><%= msg %></li>
@@ -21,7 +20,7 @@
         <%= f.email_field :email, :placeholder => "Email address", :class => "span4" %>
         <%= f.text_field :name, :placeholder => "Display name", :class => "span4" %>
         <%= f.text_field :company_name, :placeholder => "Company name", :class => "span4" %>
-        <%= f.text_field :website, :placeholder => "Website", :class => "span3" %>
+        <%= f.url_field :website, :placeholder => "Website", :class => "span3" %>
         <%= f.text_field :about, :placeholder => "Position/About", :class => "span8" %>
         <div class="span12"><p>Billing/Contact information</p></div>
         <%= f.text_field :address, :placeholder => "Street Address", :class => "span5" %>
@@ -31,7 +30,6 @@
         <%= f.phone_field :phone, :placeholder => "Phone", :class => "span2" %>
         <%= f.phone_field :office_phone, :placeholder => "Office Phone", :class => "span2" %>
         <br>
-
         <div class="center"><%= f.submit "Update your information", :class => "btn btn-primary span4" %></div>
       </div>
     <% end %>

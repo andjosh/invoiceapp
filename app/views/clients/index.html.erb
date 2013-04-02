@@ -1,10 +1,18 @@
-<h1 class="center">Your clients</h1>
+<div class="row-fluid center animated fadeInDown delay1">
+  <div class="span8 offset2">
+    <h2><img src='/assets/client.png' style='margin-top:-10px;width:100px;height:100px;'/></h2>
+    <h1>Your clients</h1>
+    <p><%= link_to 'Working harder? Create a new client.', new_user_client_path, :class => "btn btn-primary" %></p>
+  </div>
+</div>
+<div class="row-fluid center space-bottom animated fadeInDown">
+  <% @clients.each do |client| %>
+    <a href="<%= user_client_path(current_user, client) %>">
+    <div class="span6">
+      <h3><%= client.name %><%= !(client.company_name == '') ? (', '+client.company_name) : ('') %></h3>
+    </div>
+  </a>
+  <% end %>
+</div>
 
 
-<% @clients.each do |client| %>
-    <h4><%= link_to client.name, [current_user, client] %> <%= !(client.company_name == '') ? ('at '+client.company_name) : ('') %></h4>
-<% end %>
-
-<br />
-
-Getting more work? <%= link_to 'Create a new client', new_user_client_path %>.

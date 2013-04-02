@@ -1,6 +1,11 @@
-<h1>Editing client</h1>
+<div class="row-fluid center animated fadeInDown delay1 space-bottom">
+  <div class="span8 offset2">
+    <h2><img src='/assets/client.png' style='margin-top:-10px;width:100px;height:100px;'/></h2>
+    <h1><%= @client.name %><%= !(@client.company_name == '') ? (', '+@client.company_name) : ('') %></h1>
+  </div>
+</div>
 
 <%= render 'form' %>
 
-<%= link_to 'Show', [current_user, @client] %> |
-<%= link_to 'Back', user_clients_path(current_user) %>
+<p class="center lead"><%= link_to 'All clients', user_clients_path(current_user), :class => "btn btn-primary" %> 
+<%= link_to 'Delete', @client, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-danger" %></p>
