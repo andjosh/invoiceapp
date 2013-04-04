@@ -1,6 +1,6 @@
 <div class="row-fluid center animated fadeInDown delay1 space-bottom">
   <div class="span8 offset2">
-    <h2><a href="<%= user_clients_path(current_user) %>"><img src='/assets/client.png' style='margin-top:-10px;width:100px;height:100px;'/></a></h2>
+    <h2><a href="<%= clients_path %>"><img src='/assets/client.png' style='margin-top:-10px;width:100px;height:100px;'/></a></h2>
     <h1><%= @client.name %><%= !(@client.company_name == '') ? (', '+@client.company_name) : ('') %></h1>
   </div>
 </div>
@@ -27,6 +27,15 @@
 </div>
 
 <div class="center space-bottom">
-  <%= link_to 'Edit this client', edit_user_client_path(current_user, @client), :class => 'btn btn-primary btn-warning' %> 
-  <%= link_to 'All clients', user_clients_path(current_user), :class => 'btn btn-primary' %>
+  <%= link_to 'Edit this client', edit_client_path(@client), :class => 'btn btn-primary btn-warning' %> 
+  <%= link_to 'All clients', clients_path, :class => 'btn btn-primary' %>
+</div>
+<div class="row-fluid center space-bottom animated fadeInUp">
+  <% @invoices.each do |i| %>
+    <a href="<%= invoice_path(i) %>">
+    <div class="span6">
+      <h3><%= i.rand %></h3>
+    </div>
+  </a>
+  <% end %>
 </div>

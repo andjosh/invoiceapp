@@ -14,8 +14,8 @@
         <ul class="nav pull-right">
           <% if user_signed_in? %>
           <li><%= link_to "<img src='/assets/nav-contract.png' style='width:30px;height:30px;margin-top:-5px;'/>".html_safe, "#", :title => "Contracts" %></li>
-            <li><%= link_to "<img src='/assets/nav-invoice.png' style='width:25px;height:25px;margin-top:-5px;'/>".html_safe, "#", :title => "Invoicing" %></li>
-            <li><%= link_to "<img src='/assets/nav-client.png' style='width:30px;height:30px;margin-top:-5px;'/>".html_safe, user_clients_path(current_user), :title => "Clients" %></li>
+            <li><%= link_to "<img src='/assets/nav-invoice.png' style='width:25px;height:25px;margin-top:-5px;'/>".html_safe, invoices_path, :title => "Invoicing" %></li>
+            <li><%= link_to "<img src='/assets/nav-client.png' style='width:30px;height:30px;margin-top:-5px;'/>".html_safe, clients_path, :title => "Clients" %></li>
             <% if current_user.admin? %>
               <li><%= link_to "<i class='icon-magic icon-large'></i>".html_safe, admin_path, :title => "Admin" %></li>
             <% end %>

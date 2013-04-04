@@ -1,5 +1,8 @@
 BaseApp::Application.routes.draw do
 
+  resources :invoices
+
+
   resources :clients
 
 
@@ -15,13 +18,10 @@ BaseApp::Application.routes.draw do
 
   end
 
-  resources :clients, :only => []
+  resources :clients
+  resources :invoices
 
   resources :users, :only => [:edit, :update]
-
-  resources :users do
-  	resources :clients
-  end
 
   root :to => "pages#index"
 

@@ -7,5 +7,5 @@
 
 <%= render 'form' %>
 
-<p class="center lead"><%= link_to 'All clients', user_clients_path(current_user), :class => "btn btn-primary" %> 
+<p class="center lead"><%= link_to 'All clients', clients_path, :class => "btn btn-primary" %> 
 <%= link_to 'Delete', @client, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-danger" %></p>
