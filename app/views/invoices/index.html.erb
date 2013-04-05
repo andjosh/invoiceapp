@@ -8,9 +8,12 @@
 <div class="row-fluid space-bottom animated fadeInDown">
   <% @invoices.each do |i| %>
     <a href="<%= invoice_path(i) %>">
-    <div class="span6 offset3">
-      <h3><%= i.title %> <small class="pull-right"><%= time_ago_in_words(i.updated_at) %> old</small></h3>
+    <div class="span8 offset2">
+      <h3><%= i.title %> <small class="pull-right hidden-phone" style="margin-top:15px;"><%= l i.updated_at, :format => :short_date %></small></h3>
     </div>
   </a>
   <% end %>
+  <div class="span12 center">
+    <%= paginate @invoices %>
+  </div>
 </div>

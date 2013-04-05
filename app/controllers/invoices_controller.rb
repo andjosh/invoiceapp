@@ -2,7 +2,7 @@ class InvoicesController < ApplicationController
   # GET /invoices
   # GET /invoices.json
   def index
-    @invoices = current_user.invoices.order("updated_at DESC")
+    @invoices = current_user.invoices.order("updated_at DESC").page params[:page]
 
     respond_to do |format|
       format.html # index.html.erb

@@ -46,7 +46,7 @@ class ClientsController < ApplicationController
 
     respond_to do |format|
       if @client.save
-        format.html { redirect_to [current_user, @client], notice: 'Your client was successfully created. Now you can start earning.' }
+        format.html { redirect_to @client, notice: 'Your client was successfully created. Now you can start earning.' }
         format.json { render json: @client, status: :created, location: @client }
       else
         format.html { render action: "new" }
@@ -62,7 +62,7 @@ class ClientsController < ApplicationController
 
     respond_to do |format|
       if @client.update_attributes(params[:client])
-        format.html { redirect_to [current_user, @client], notice: 'Your client was successfully updated. Nice work.' }
+        format.html { redirect_to @client, notice: 'Your client was successfully updated. Nice work.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
