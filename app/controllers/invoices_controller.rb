@@ -67,7 +67,7 @@ class InvoicesController < ApplicationController
   # PUT /invoices/1
   # PUT /invoices/1.json
   def update
-    @invoice = Invoice.find(params[:id])
+    @invoice = Invoice.find_by_rand(params[:id])
 
     respond_to do |format|
       if @invoice.update_attributes(params[:invoice])
@@ -83,7 +83,7 @@ class InvoicesController < ApplicationController
   # DELETE /invoices/1
   # DELETE /invoices/1.json
   def destroy
-    @invoice = Invoice.find(params[:id])
+    @invoice = Invoice.find_by_rand(params[:id])
     @invoice.destroy
 
     respond_to do |format|
