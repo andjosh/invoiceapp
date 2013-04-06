@@ -1,5 +1,8 @@
-<h1>New invoice</h1>
+<div class="row-fluid center animated fadeInDown delay1 space-bottom">
+  <div class="span8 offset2">
+    <h2><a href="<%= invoices_path %>"><img src='/assets/invoice.png' style='margin-top:-10px;width:100px;height:100px;'/></a></h2>
+    <h1>Make an invoice, make some money.</h1>
+  </div>
+</div>
 
 <%= render 'form' %>
-
-<%= link_to 'Back', invoices_path %>

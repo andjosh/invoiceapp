@@ -27,6 +27,11 @@ class InvoicesController < ApplicationController
   # GET /invoices/new.json
   def new
     @invoice = Invoice.new
+    clients = current_user.clients.order("name ASC")
+    @client_names = []
+    clients.each do |c|
+      @client_names << c.name
+    end
 
     respond_to do |format|
       format.html # new.html.erb
@@ -44,6 +49,8 @@ class InvoicesController < ApplicationController
   def create
     @invoice = Invoice.new(params[:invoice])
     @invoice.user_id = current_user.id
+    @invoice.client_id = Client.find_by_name(params[:invoice][:client_name]).id
+    @invoice.number = Client.find(@invoice.client_id).invoices.count + 1
     @invoice.rand = current_user.name.downcase.gsub(/\s+/, '-').gsub(/[^a-z0-9_-]/, '').squeeze('-')+'-'+SecureRandom.hex(16)
 
     respond_to do |format|

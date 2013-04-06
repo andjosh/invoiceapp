@@ -2,10 +2,14 @@
   <div class="span8 offset2">
     <h2><img src='/assets/invoice.png' style='margin-top:-10px;width:100px;height:100px;'/></h2>
     <h1>Your Invoices</h1>
-    <p><%= link_to 'Ready to get paid? Create a new invoice.', new_invoice_path, :class => "btn btn-primary" %></p>
   </div>
 </div>
 <div class="row-fluid space-bottom animated fadeInDown">
+  <a href="<%= new_invoice_path %>">
+    <div class="span8 offset2 text-success">
+      <h3>+ New Invoice</h3>
+    </div>
+  </a>
   <% @invoices.each do |i| %>
     <a href="<%= invoice_path(i) %>">
     <div class="span8 offset2">

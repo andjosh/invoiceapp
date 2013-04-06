@@ -1,37 +1,25 @@
-<%= form_for(@invoice) do |f| %>
-  <% if @invoice.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@invoice.errors.count, "error") %> prohibited this invoice from being saved:</h2>
+<div class="row-fluid animated fadeInDown space-bottom">
+  <div class="span12">
+    <%= form_for(@invoice) do |f| %>
+      <% if @invoice.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@invoice.errors.count, "error") %> prohibited this invoice from being saved:</h2>
 
-      <ul>
-      <% @invoice.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
+          <ul>
+          <% @invoice.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+          </ul>
+        </div>
       <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :client_id %><br />
-    <%= f.text_field :client_id %>
+      <div class="controls center">
+        <input type="text" class="span6" data-provide="typeahead" data-items="4" data-source='<%= @client_names %>', placeholder="Start typing to choose a client" id="invoice_client_name" name="invoice[client_name]" autofocus="autofocus">
+        <%= f.text_field :title, :placeholder => 'Name this invoice (for your reference)', :class => 'span6'  %>
+        <%= f.text_area :description, :placeholder => 'Write out a description of the job for the client to read and understand upon receipt of this invoice.', :class => 'span6 offset1' %>
+        <div class="actions">
+          <div class="center"><%= f.submit "Create this invoice", :class => "btn btn-primary span4" %></div>
+        </div>
+      </div>
+    <% end %>
   </div>
-  <div class="field">
-    <%= f.label :rand %><br />
-    <%= f.text_field :rand %>
-  </div>
-  <div class="field">
-    <%= f.label :title %><br />
-    <%= f.text_field :title %>
-  </div>
-  <div class="field">
-    <%= f.label :description %><br />
-    <%= f.text_area :description %>
-  </div>
-  <div class="field">
-    <%= f.label :number %><br />
-    <%= f.number_field :number %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+</div>

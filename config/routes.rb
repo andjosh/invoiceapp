@@ -1,5 +1,8 @@
 BaseApp::Application.routes.draw do
 
+  resources :contracts
+
+
   resources :invoices
 
 
@@ -15,13 +18,11 @@ BaseApp::Application.routes.draw do
   namespace "admin" do
 
     resources :users
+    resources :categories
 
   end
 
-  resources :clients
-  resources :invoices
-
-  resources :users, :only => [:edit, :update]
+  resources :users, :only => [:edit, :update, :show]
 
   root :to => "pages#index"
 

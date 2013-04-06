@@ -11,7 +11,13 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130404025454) do
+ActiveRecord::Schema.define(:version => 20130406215606) do
+
+  create_table "categories", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "clients", :force => true do |t|
     t.string   "name"
@@ -44,6 +50,16 @@ ActiveRecord::Schema.define(:version => 20130404025454) do
   add_index "invoices", ["client_id"], :name => "index_invoices_on_client_id"
   add_index "invoices", ["rand"], :name => "index_invoices_on_rand"
   add_index "invoices", ["user_id"], :name => "index_invoices_on_user_id"
+
+  create_table "items", :force => true do |t|
+    t.string   "name"
+    t.float    "count"
+    t.float    "rate"
+    t.integer  "category_id"
+    t.string   "description"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
 
   create_table "roles", :force => true do |t|
     t.string   "name"
