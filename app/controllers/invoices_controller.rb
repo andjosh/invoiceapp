@@ -1,4 +1,7 @@
 class InvoicesController < ApplicationController
+
+
+
   # GET /invoices
   # GET /invoices.json
   def index
@@ -18,7 +21,7 @@ class InvoicesController < ApplicationController
     @user = User.find(@invoice.user_id)
 
     respond_to do |format|
-      format.html # show.html.erb
+      format.html {render :layout => false}
       format.json { render json: @invoice }
     end
   end
@@ -89,6 +92,14 @@ class InvoicesController < ApplicationController
     respond_to do |format|
       format.html { redirect_to invoices_url }
       format.json { head :no_content }
+    end
+  end
+
+  private
+
+  def check_user
+    if @user != current_user
+      redirect_to root_path, :notice => "Sorry, you can't access that information. Life is full of disappointment."
     end
   end
 end

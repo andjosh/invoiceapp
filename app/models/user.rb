@@ -12,6 +12,7 @@ class User < ActiveRecord::Base
   has_and_belongs_to_many :roles
   has_many :clients
   has_many :invoices
+  belongs_to :category
 
   def to_param
     "#{id} #{name}".parameterize

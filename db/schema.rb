@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130406215606) do
+ActiveRecord::Schema.define(:version => 20130407022421) do
 
   create_table "categories", :force => true do |t|
     t.string   "name"
@@ -36,6 +36,11 @@ ActiveRecord::Schema.define(:version => 20130406215606) do
     t.datetime "updated_at",   :null => false
   end
 
+  create_table "contracts", :force => true do |t|
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "invoices", :force => true do |t|
     t.integer  "client_id"
     t.integer  "user_id"
@@ -43,8 +48,14 @@ ActiveRecord::Schema.define(:version => 20130406215606) do
     t.string   "title"
     t.text     "description"
     t.integer  "number"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",                       :null => false
+    t.datetime "updated_at",                       :null => false
+    t.boolean  "paid",          :default => false
+    t.boolean  "taxed",         :default => false
+    t.float    "travel"
+    t.float    "previous_paid"
+    t.float    "materials"
+    t.float    "other"
   end
 
   add_index "invoices", ["client_id"], :name => "index_invoices_on_client_id"
@@ -59,6 +70,8 @@ ActiveRecord::Schema.define(:version => 20130406215606) do
     t.string   "description"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
+    t.datetime "date"
+    t.float    "total"
   end
 
   create_table "roles", :force => true do |t|
