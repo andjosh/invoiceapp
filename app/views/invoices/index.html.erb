@@ -12,10 +12,10 @@
   </a>
   <% @invoices.each do |i| %>
     <a href="<%= invoice_path(i) %>">
-    <div class="span8 offset2">
-      <h3><%= i.title %> <small class="pull-right hidden-phone" style="margin-top:15px;"><%= l i.updated_at, :format => :short_date %></small></h3>
-    </div>
-  </a>
+      <div class="span8 offset2">
+        <h3><%= i.title %> <small class="pull-right hidden-phone" style="margin-top:15px;"><%= l i.updated_at, :format => :short_date %></small></h3>
+      </div>
+    </a>
   <% end %>
   <div class="span12 center">
     <%= paginate @invoices %>

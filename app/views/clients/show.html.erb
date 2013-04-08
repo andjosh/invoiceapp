@@ -30,12 +30,12 @@
   <%= link_to 'Edit this client', edit_client_path(@client), :class => 'btn btn-primary btn-warning' %> 
   <%= link_to 'All clients', clients_path, :class => 'btn btn-primary' %>
 </div>
-<div class="row-fluid center space-bottom animated fadeInUp">
+<div class="row-fluid space-bottom animated fadeInUp">
   <% @invoices.each do |i| %>
     <a href="<%= invoice_path(i) %>">
-    <div class="span6">
-      <h3><%= i.rand %></h3>
-    </div>
-  </a>
+      <div class="span8 offset2">
+        <h3><%= i.title %> <small class="pull-right hidden-phone" style="margin-top:15px;"><%= l i.updated_at, :format => :short_date %></small></h3>
+      </div>
+    </a>
   <% end %>
 </div>
