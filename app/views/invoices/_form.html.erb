@@ -27,13 +27,12 @@
         <input type="text" class="span6" data-provide="typeahead" data-items="4" data-source='<%= @client_names %>', placeholder="Start typing to choose a client" id="invoice_client_name" name="invoice[client_name]" autofocus="autofocus">
         <%= f.text_field :title, :placeholder => 'Name this invoice (for your reference)', :class => 'span6'  %>
         <%= f.text_area :description, :placeholder => 'Write out a description of the job for the client to read and understand upon receipt of this invoice.', :class => 'span12', :rows => 1 %>
-        <%= f.fields_for :items, :html => {:multipart => true} do |p| %>
-          <%= p.text_field :date, :placeholder => 'choose date', :id => "datepicker" %>
+        <%= f.fields_for :items do |p| %>
             <%= p.date_select( :date, {:use_short_month => 1, :order => [:month, :day, :year]}, {:class => " span1 gt-select-auto"}) %>
-            <%= p.text_field :name, :placeholder => 'Title', :class => "span2" %>
-            <%= p.text_field :description, :placeholder => 'Description of work/item', :class => 'span3' %>
-            <div class="input-prepend" style="display:inline;"><span class="add-on">$</span><%= p.number_field :rate, :placeholder => 'Rate', :id => 'prependedInput', :class => 'span2' %></div>
-            <%= p.number_field :count, :placeholder => 'Quantity', :class => 'span2' %>
+            <%= p.text_field :name, :placeholder => 'Title', :class => "span3" %>
+            <%= p.text_field :description, :placeholder => 'Description of work/item', :class => 'span4' %>
+            <div class="input-prepend" style="display:inline;"><span class="add-on">$</span><%= p.text_field :rate, :placeholder => 'Rate', :id => 'prependedInput', :class => 'span1' %></div>
+            <%= p.text_field :count, :placeholder => 'Quantity', :class => 'span1' %>
             <%= p.link_to_remove "<span class='remove_nested_fields_photo text-error'><small>Remove</small></span>".html_safe %>
         <% end %>
         <div class="clearfix"></div>

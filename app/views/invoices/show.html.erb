@@ -85,6 +85,13 @@
           <div class="span6 offset3"><hr></div>
         </div>
       </div>
+      <div class="row-Fluid">
+        <% @invoice.items.each do |it| %>
+          <div class="span3">
+            <%= it.name %>
+          </div>
+        <% end %>
+      </div>
       <div class="row-fluid">
         <div class="span6 offset6" style="text-align:right;">
           <h4><%= @user.name %> | <%= @user.company_name %></h4>
