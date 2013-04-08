@@ -6,6 +6,8 @@ class Invoice < ActiveRecord::Base
   belongs_to :client
   has_many :items
 
+  accepts_nested_attributes_for :items, :allow_destroy => true
+
   scope :paid, where("paid = ?", true)
 
   def to_param

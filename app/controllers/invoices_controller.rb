@@ -45,6 +45,11 @@ class InvoicesController < ApplicationController
   # GET /invoices/1/edit
   def edit
     @invoice = Invoice.find_by_rand(params[:id])
+    clients = current_user.clients.order("name ASC")
+    @client_names = []
+    clients.each do |c|
+      @client_names << c.name
+    end
   end
 
   # POST /invoices

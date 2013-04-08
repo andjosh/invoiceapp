@@ -42,7 +42,13 @@
     <div class="container">
 
       <%= render "layouts/application/flash_messages" %>
-
+      <% if @user == current_user %>
+        <div class="row-fluid">
+          <div class="span12 center">
+            <p class="lead"><a href="mailto:<%= @client.email %>?subject=Invoice+from+<%= @user.name %>&body=Hello!%0AYou+have+an+invoice+from+<%= @user.name %>,+with+payment+due+<%= l @invoice.updated_at+21.days, :format => :short_date %>.%0AYou+can+view+it+and+pay+here:+<%= invoice_url(@invoice) %>" target="_blank" class="text-success">Send Invoice</a> | <%= link_to 'Edit', edit_invoice_path(@invoice), :class => 'text-warning' %> | <%= link_to 'Delete', @client, method: :delete, data: { confirm: 'Are you sure?' }, :class => "text-error" %></p>
+          </div>
+        </div>
+      <% end %>
       <div class="row-fluid">
         <div class="span3">
           <p>Invoice #<%= @invoice.number %></p>
