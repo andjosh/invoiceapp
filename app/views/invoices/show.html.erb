@@ -85,12 +85,45 @@
           <div class="span6 offset3"><hr></div>
         </div>
       </div>
-      <div class="row-Fluid">
-        <% @invoice.items.each do |it| %>
+      <div class="row-fluid hidden-phone">
+        <div class="span2"><h4>Date</h4></div>
+        <div class="span3"><h4>Title</h4></div>
+        <div class="span3"><h4>Description</h4></div>
+        <div class="span1"><h4>Rate</h4></div>
+        <div class="span1"><h4>Count</h4></div>
+      </div>
+      <% @invoice.items.order("date ASC").each do |it| %>
+        <div class="row-fluid">
+          <div class="span2">
+            <%= l it.date, :format => :short_date %>
+          </div>
           <div class="span3">
             <%= it.name %>
           </div>
-        <% end %>
+          <div class="span3">
+            <%= it.description %>
+          </div>
+          <div class="span1">
+            $<%= it.rate %>
+          </div>
+          <div class="span1">
+            <%= it.count %>
+          </div>
+        </div>
+        <div class="row-fluid visible-phone">
+          <div class="span6 offset6">
+            <hr>
+          </div>
+        </div>
+      <% end %>
+      <div class="row-fluid space-top">
+        <div class="span3 offset8">
+          <p>Materials: <span class="pull-right"><%= '$'+@invoice.materials  if @invoice.materials.present? %></span></p>
+          <p>Travel: <span class="pull-right"><%= '$'+@invoice.travel  if @invoice.travel.present? %></span></p>
+          <p>Other: <span class="pull-right"><%= '$'+@invoice.other  if @invoice.other.present? %></span></p>
+          <p>Previous Paid: <span class="pull-right"><%= '- $'+@invoice.previous_paid  if @invoice.previous_paid.present? %></span></p>
+          <p class="lead">Total: <span class="pull-right">$<%= @total %></span></p>
+        </div>
       </div>
       <div class="row-fluid">
         <div class="span6 offset6" style="text-align:right;">

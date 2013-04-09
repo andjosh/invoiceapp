@@ -1,5 +1,5 @@
 class Invoice < ActiveRecord::Base
-  attr_accessible :description, :number, :rand, :client_id, :user_id, :title, :paid, :items_attributes
+  attr_accessible :description, :number, :rand, :client_id, :user_id, :title, :paid, :items_attributes, :taxed, :travel, :materials, :previous_paid, :other
 
   validates :rand, :uniqueness => true
   belongs_to :user

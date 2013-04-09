@@ -19,6 +19,10 @@ class InvoicesController < ApplicationController
     @invoice = Invoice.find_by_rand(params[:id])
     @client = Client.find(@invoice.client_id)
     @user = User.find(@invoice.user_id)
+    @total = 0
+    @invoice.items.each do |i|
+      @total += (i.rate * i.count).round(2)
+    end
 
     respond_to do |format|
       format.html {render :layout => false}
