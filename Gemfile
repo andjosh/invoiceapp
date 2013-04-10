@@ -51,5 +51,5 @@ end
 
 group :production, :development do
   gem "thin"
-  #gem "wkhtmltopdf-heroku"
+  gem "wkhtmltopdf-heroku"
 end
