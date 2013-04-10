@@ -56,7 +56,7 @@
           <p><small>Attn:</small> <%= @client.name %><%= ', '+@client.title if @client.title.present? %></p>
           <p></p>
         </td>
-        <td>
+        <td style="margin-left:20px;">
           <p><small>Description:</small> <%= @invoice.description %></p>
         </td>
       </tr></table>
@@ -89,7 +89,7 @@
           </tr>
         <% end %>
       </table>
-      <table style="margin-top:40px;">
+      <table style="margin-top:40px; margin-bottom:40px;">
         <tr>
           <td>Materials:</td><td><%= '$'+@invoice.materials  if @invoice.materials.present? %></td>
         </tr>

@@ -1,14 +1,5 @@
 <%= javascript_include_tag :defaults, "nested_form" %>
-  <script>
-  $(document).on('nested:fieldAdded', function(event){
-    // this field was just inserted into your form
-    var field = event.field; 
-    // it's a jQuery object already! Now you can find date input
-    var dateField = field.find('#datepicker');
-    // and activate datepicker on it
-    dateField.datepicker();
-  })
-  </script>
+
 <div class="row-fluid animated fadeInDown space-bottom">
   <div class="span12">
     <%= nested_form_for(@invoice) do |f| %>
@@ -23,7 +14,7 @@
           </ul>
         </div>
       <% end %>
-      <div class="controls center">
+      <div class="controls">
         <input type="text" class="span6" data-provide="typeahead" data-items="4" data-source='<%= @client_names %>', placeholder="Start typing to choose a client" id="invoice_client_name" name="invoice[client_name]" autofocus="autofocus">
         <%= f.text_field :title, :placeholder => 'Name this invoice (for your reference)', :class => 'span6'  %>
         <%= f.text_area :description, :placeholder => 'Write out a description of the job for the client to read and understand upon receipt of this invoice.', :class => 'span12', :rows => 1 %>
@@ -32,12 +23,23 @@
             <%= p.text_field :name, :placeholder => 'Title', :class => "span3" %>
             <%= p.text_field :description, :placeholder => 'Description of work/item', :class => 'span4' %>
             <div class="input-prepend" style="display:inline;"><span class="add-on">$</span><%= p.text_field :rate, :placeholder => 'Rate', :id => 'prependedInput', :class => 'span1' %></div>
+            <span class="hidden-phone">x</span>
             <%= p.text_field :count, :placeholder => 'Quantity', :class => 'span1' %>
-            <%= p.link_to_remove "<span class='remove_nested_fields_photo text-error'><small>Remove</small></span>".html_safe %>
+            <%= p.link_to_remove "<i class='icon-remove-sign icon-large text-error'></i>".html_safe %>
         <% end %>
         <div class="clearfix"></div>
-        <p><%= f.link_to_add "Add a line-item", :items, :class => 'space-bottom text-success' %></p>
-        <div class="actions">
+        <p class="center space-bottom"><%= f.link_to_add "+ Add a line-item", :items, :class => 'space-bottom text-success' %></p>
+
+        <div class="input-prepend" style="display:inline;"><span class="add-on">$</span><%= f.text_field :travel, :placeholder => 'Travel', :id => 'prependedInput', :class => 'span2' %></div>
+        <div class="input-prepend" style="display:inline;"><span class="add-on">$</span><%= f.text_field :materials, :placeholder => 'Materials', :id => 'prependedInput', :class => 'span2' %></div>
+        <div class="input-prepend" style="display:inline;"><span class="add-on">$</span><%= f.text_field :previous_paid, :placeholder => 'Previously Paid', :id => 'prependedInput', :class => 'span2' %></div>
+        <div class="input-prepend" style="display:inline;"><span class="add-on">$</span><%= f.text_field :other, :placeholder => 'Other', :id => 'prependedInput', :class => 'span2' %></div>
+        <%= f.label :taxed, "Apply tax?", :class=>"checkbox inline" %>
+        <%= f.check_box :taxed, :inline_label => 'Apply tax?', :label => false, :class => 'span1' %>
+        <%= f.label :paid, "Paid up?", :class=>"checkbox inline" %>
+        <%= f.check_box :paid, :inline_label => 'Paid?', :label => false, :class => 'span1' %>
+
+        <div class="actions space-top">
           <div class="center"><%= f.submit "Enter", :class => "btn btn-primary span4" %></div>
         </div>
       </div>

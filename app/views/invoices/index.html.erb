@@ -11,7 +11,7 @@
     </div>
   </a>
   <% @invoices.each do |i| %>
-    <a href="<%= invoice_path(i) %>">
+    <a href="<%= edit_invoice_path(i) %>" class="<%= 'muted' if i.paid? %>">
       <div class="span8 offset2">
         <h3><%= i.title %> <small class="pull-right hidden-phone" style="margin-top:15px;"><%= l i.updated_at, :format => :short_date %></small></h3>
       </div>
