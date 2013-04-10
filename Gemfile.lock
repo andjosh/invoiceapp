@@ -33,6 +33,8 @@ GEM
       kaminari (>= 0.12)
       meta_search (>= 1.0)
       rails (>= 3.0)
+    annotate (2.5.0)
+      rake
     arel (3.0.2)
     awesome_print (1.1.0)
     bcrypt-ruby (3.0.1)
@@ -245,6 +247,10 @@ GEM
     warden (1.2.1)
       rack (>= 1.0)
     websocket (1.0.7)
+    wicked_pdf (0.9.4)
+      rails
+    wkhtmltopdf (0.1.2)
+    wkhtmltopdf-binary (0.9.9.1)
     xpath (1.0.0)
       nokogiri (~> 1.3)
 
@@ -253,6 +259,7 @@ PLATFORMS
 
 DEPENDENCIES
   admin_view
+  annotate
   awesome_print
   capybara
   carrierwave
@@ -282,3 +289,6 @@ DEPENDENCIES
   therubyracer
   thin
   twitter-bootstrap-rails
+  wicked_pdf
+  wkhtmltopdf
+  wkhtmltopdf-binary

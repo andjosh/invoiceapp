@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+
+    <title>Roninvoice | Freelance with intelligence and style</title>
+    <link href='http://fonts.googleapis.com/css?family=Lato|Asul' rel='stylesheet' type='text/css'>
+
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js" type="text/javascript"></script>
+    <![endif]-->
+
+    <%= wicked_pdf_stylesheet_link_tag "application" %>
+    <style>
+      body {color:#222;background-color:#fff;}
+      table {width: 100%;}
+    </style>
+
+    <%= csrf_meta_tag %>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <%= yield :head %>
+
+  </head>
+
+  <body>
+
+    <div class="container">
+      <table><tr>
+        <td>
+          <p>Invoice #<%= @invoice.number %></p>
+        </td>
+        <td>
+          <p><small>From</small> <strong><%= @user.name %></strong><%= ', '+@user.company_name if @user.company_name.present? %></p>
+        </td>
+        <td>
+          <p><small>Date</small> <strong><%= l @invoice.updated_at, :format => :short_date %></strong></p>
+        </td>
+        <td>
+          <p><small>Date Due</small> <strong><%= l @invoice.updated_at+21.days, :format => :short_date %></strong></p>
+        </td>
+      </tr></table>
+      <table><tr>
+        <td>
+          <p><%= @client.company_name.present? ? @client.company_name : @client.name %></p>
+          <address>
+          <% unless @client.address.blank? %>
+            <%= @client.address %><br>
+            <%= @client.city %>, <%= @client.state %> <%= @client.zip %><br>
+          <% end %>
+          <%= 'Tel: '+@client.phone if @client.phone.present? %><br>
+          <%= 'Office: '+@client.office_phone if @client.office_phone.present? %><br>
+          <%= link_to @client.website, @client.website %>
+          </address>
+          <p><small>Attn:</small> <%= @client.name %><%= ', '+@client.title if @client.title.present? %></p>
+          <p></p>
+        </td>
+        <td>
+          <p><small>Description:</small> <%= @invoice.description %></p>
+        </td>
+      </tr></table>
+      <hr>
+      <table>
+        <tr>
+          <th><h4>Date</h4></th>
+          <th><h4>Title</h4></th>
+          <th><h4>Description</h4></th>
+          <th><h4>Rate</h4></th>
+          <th><h4>Count</h4></th>
+        </tr>
+        <% @invoice.items.order("date ASC").each do |it| %>
+          <tr>
+            <td>
+              <%= l it.date, :format => :short_date %>
+            </td>
+            <td>
+              <%= it.name %>
+            </td>
+            <td>
+              <%= it.description %>
+            </td>
+            <td>
+              $<%= it.rate %>
+            </td>
+            <td>
+              <%= it.count %>
+            </td>
+          </tr>
+        <% end %>
+      </table>
+      <table style="margin-top:40px;">
+        <tr>
+          <td>Materials:</td><td><%= '$'+@invoice.materials  if @invoice.materials.present? %></td>
+        </tr>
+        <tr>
+          <td>Travel:</td><td><%= '$'+@invoice.travel  if @invoice.travel.present? %></td>
+        </tr>
+        <tr>
+          <td>Other:</td><td><%= '$'+@invoice.other  if @invoice.other.present? %></td>
+        </tr>
+        <tr>
+          <td>Previous Paid:</td><td><%= '- $'+@invoice.previous_paid  if @invoice.previous_paid.present? %></td>
+        </tr>
+        <tr>
+          <td class="lead" style="border-bottom:1px solid #aaa;">Total:</td><td>$<%= @total %></td>
+        </tr>
+      </table>
+      <div class="row-fluid">
+        <div class="span6 offset6" style="text-align:right;">
+          <h4><%= @user.name %> | <%= @user.company_name %></h4>
+          <address>
+          <% unless @user.address.blank? %>
+            <%= @user.address %><br>
+            <%= @user.city %>, <%= @user.state %> <%= @user.zip %><br>
+          <% end %>
+          <%= 'Tel: '+@user.phone if @user.phone.present? %><br>
+          <%= 'Office: '+@user.office_phone if @user.office_phone.present? %><br>
+          <%= link_to @user.website, @user.website %>
+          </address>
+        </div>
+      </div>
+
+      <footer>
+        <div class="row-fluid space-top">
+          <div class="span12 center">
+            <p>Made with <%= link_to 'Roninvoice', root_url, :class => 'brand' %></p>
+          </div>
+        </div>
+      </footer>
+    </div>
+  </body>
+</html>
+

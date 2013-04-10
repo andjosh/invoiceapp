@@ -17,6 +17,10 @@ gem "coffee-rails"
 gem "less-rails"
 gem "twitter-bootstrap-rails"
 gem 'newrelic_rpm'
+gem 'wicked_pdf'
+gem 'annotate'
+gem "wkhtmltopdf"
+gem "wkhtmltopdf-binary"
 
 group :assets do
   gem "therubyracer", :platform => :ruby
@@ -47,4 +51,5 @@ end
 
 group :production, :development do
   gem "thin"
+  #gem "wkhtmltopdf-heroku"
 end

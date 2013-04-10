@@ -27,6 +27,11 @@ class InvoicesController < ApplicationController
     respond_to do |format|
       format.html {render :layout => false}
       format.json { render json: @invoice }
+      format.pdf  { render  :pdf => "invoice",
+                :template => '/invoices/pdf.html.erb',
+                :layout => false,
+                :handlers => [:erb]
+                  }
     end
   end
 
