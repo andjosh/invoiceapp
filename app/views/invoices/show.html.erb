@@ -122,10 +122,10 @@
       <% end %>
       <div class="row-fluid space-top">
         <div class="span3 offset8">
-          <p>Materials: <span class="pull-right"><%= '$'+@invoice.materials  if @invoice.materials.present? %></span></p>
-          <p>Travel: <span class="pull-right"><%= '$'+@invoice.travel  if @invoice.travel.present? %></span></p>
-          <p>Other: <span class="pull-right"><%= '$'+@invoice.other  if @invoice.other.present? %></span></p>
-          <p>Previous Paid: <span class="pull-right"><%= '- $'+@invoice.previous_paid  if @invoice.previous_paid.present? %></span></p>
+          <p>Materials: <span class="pull-right"><%= '$'+@invoice.materials.to_s if @invoice.materials.present? %></span></p>
+          <p>Travel: <span class="pull-right"><%= '$'+@invoice.travel.to_s if @invoice.travel.present? %></span></p>
+          <p>Other: <span class="pull-right"><%= '$'+@invoice.other.to_s if @invoice.other.present? %></span></p>
+          <p>Previous Paid: <span class="pull-right"><%= '- $'+@invoice.previous_paid.to_s if @invoice.previous_paid.present? %></span></p>
           <p class="lead">Total: <span class="pull-right">$<%= @total %></span></p>
         </div>
       </div>

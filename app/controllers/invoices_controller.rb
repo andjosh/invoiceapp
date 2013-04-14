@@ -30,8 +30,7 @@ class InvoicesController < ApplicationController
       format.pdf  { render  :pdf => "invoice",
                 :template => '/invoices/pdf.html.erb',
                 :layout => false,
-                :handlers => [:erb]
-                  }
+                :handlers => [:erb]}
     end
   end
 

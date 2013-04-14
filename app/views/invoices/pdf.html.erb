@@ -91,16 +91,16 @@
       </table>
       <table style="margin-top:40px; margin-bottom:40px;">
         <tr>
-          <td>Materials:</td><td><%= '$'+@invoice.materials  if @invoice.materials.present? %></td>
+          <td>Materials:</td><td><%= '$'+@invoice.materials.to_s  if @invoice.materials.present? %></td>
         </tr>
         <tr>
-          <td>Travel:</td><td><%= '$'+@invoice.travel  if @invoice.travel.present? %></td>
+          <td>Travel:</td><td><%= '$'+@invoice.travel.to_s  if @invoice.travel.present? %></td>
         </tr>
         <tr>
-          <td>Other:</td><td><%= '$'+@invoice.other  if @invoice.other.present? %></td>
+          <td>Other:</td><td><%= '$'+@invoice.other.to_s  if @invoice.other.present? %></td>
         </tr>
         <tr>
-          <td>Previous Paid:</td><td><%= '- $'+@invoice.previous_paid  if @invoice.previous_paid.present? %></td>
+          <td>Previous Paid:</td><td><%= '- $'+@invoice.previous_paid.to_s  if @invoice.previous_paid.present? %></td>
         </tr>
         <tr>
           <td class="lead" style="border-bottom:1px solid #aaa;">Total:</td><td>$<%= @total %></td>
