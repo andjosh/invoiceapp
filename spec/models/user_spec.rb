@@ -27,6 +27,9 @@
 #  about                  :text
 #  website                :string(255)
 #  tax                    :float
+#  str_uid                :string(255)
+#  str_token              :string(255)
+#  str_pub                :string(255)
 #
 
 require 'spec_helper'

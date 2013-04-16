@@ -34,6 +34,7 @@
         <div class="center"><%= f.submit "Update your information", :class => "btn btn-primary span4" %></div>
       </div>
     <% end %>
+    <p class="pull-left"><%= link_to "Connect with Stripe", user_omniauth_authorize_path(:stripe_connect), :class => "btn btn-primary btn-small" %></p>
     <p class="pull-right"><%= link_to "Forgot your password?", new_password_path(@user) %> | Unhappy? <%= link_to "Cancel your account", registration_path(@user), :data => { :confirm => "Are you sure?" }, :method => :delete, :class => "text-error" %>.</p>
   </div>
 </div>

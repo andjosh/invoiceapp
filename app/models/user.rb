@@ -27,6 +27,9 @@
 #  about                  :text
 #  website                :string(255)
 #  tax                    :float
+#  str_uid                :string(255)
+#  str_token              :string(255)
+#  str_pub                :string(255)
 #
 
 class User < ActiveRecord::Base
@@ -72,6 +75,13 @@ class User < ActiveRecord::Base
     else # Create a user with a stub password.
       User.create!(:email => data["email"], :password => Devise.friendly_token[0,20], :name => access_token["extra"]["raw_info"]["name"], :image => data["image"], :about => access_token["extra"]["raw_info"]["work"][0]["position"]["name"])
     end
+  end
+
+  def self.stripe_oauth(data, current_user)
+    current_user.str_uid = data['uid']
+    current_user.str_pub = data['info']['stripe_publishable_key']
+    current_user.str_token = data['credentials']['token']
+    
   end
 
 end

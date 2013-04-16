@@ -21,6 +21,8 @@ gem 'wicked_pdf'
 gem 'annotate'
 gem "wkhtmltopdf"
 gem "wkhtmltopdf-binary"
+gem 'omniauth-stripe-connect'
+gem 'figaro'
 
 group :assets do
   gem "therubyracer", :platform => :ruby
