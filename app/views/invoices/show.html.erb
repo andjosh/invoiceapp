@@ -78,16 +78,14 @@
         <div class="span6">
           <h4><%= @client.company_name.present? ? @client.company_name : @client.name %></h4>
           <address>
-          <% unless @client.address.blank? %>
-            <%= @client.address %><br>
-            <%= @client.city %>, <%= @client.state %> <%= @client.zip %><br>
-          <% end %>
+            <%= @client.address if present? %><br>
+            <%= @client.city if present? %>, <%= @client.state if present? %> <%= @client.zip if present? %><br>
           <%= 'Tel: '+@client.phone if @client.phone.present? %><br>
           <%= 'Office: '+@client.office_phone if @client.office_phone.present? %><br>
           <%= link_to @client.website, @client.website %>
           </address>
           <p><small>Attn:</small> <%= @client.name %><%= ', '+@client.title if @client.title.present? %></p>
-          <p></p>
+          <p><%= @client.email %></p>
         </div>
         <div class="span6">
           <p><small>Description:</small> <%= @invoice.description %></p>
