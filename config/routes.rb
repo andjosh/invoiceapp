@@ -4,7 +4,7 @@ BaseApp::Application.routes.draw do
 
 
   resources :invoices
-
+  match 'invoices/:id/mail' => 'invoices#mail', as: :mail
 
   resources :clients
 

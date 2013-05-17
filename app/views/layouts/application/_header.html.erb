@@ -1,4 +1,4 @@
-<div class="navbar navbar-fixed-top">
+<div class="navbar">
   <div class="navbar-inner">
     <div class="container">
 
@@ -23,7 +23,7 @@
             <li><%= link_to "<i class='icon-signout icon-large'></i>".html_safe, destroy_user_session_path, :title => "Sign out" %></li>
           <% else %>
             <li><%= link_to "Sign in", new_user_session_path %></li>
-            <li><%= link_to "Sign in with Facebook", user_omniauth_authorize_path(:facebook) %></li>
+            <li><%= link_to "Facebook Sign in", user_omniauth_authorize_path(:facebook) %></li>
           <% end -%>
         </ul>
       </div>

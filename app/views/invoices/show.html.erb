@@ -25,7 +25,8 @@
 
     <%= wicked_pdf_stylesheet_link_tag "application" %>
     <style>
-      body {background-color: #eee;color:#222;padding-top: 0px;margin-top: 20px;}
+      body {color:#222;padding-top: 0px;margin-top: 20px;background-color: #fff;}
+      .btn{background:#ddd;border:none;box-shadow:none;}
     </style>
 
     <%= csrf_meta_tag %>
@@ -43,14 +44,20 @@
       <% if @user == current_user %>
         <div class="row-fluid">
           <div class="span12 center">
-            <p class="lead"><a href="mailto:<%= @client.email %>?subject=Invoice+from+<%= @user.name %>&body=Hello!%0AYou+have+an+invoice+from+<%= @user.name %>,+with+payment+due+<%= l @invoice.updated_at+21.days, :format => :short_date %>.%0AYou+can+view+it+and+pay+here:+<%= invoice_url(@invoice) %>" target="_blank" class="text-success">Send Invoice</a> | <%= link_to 'Edit', edit_invoice_path(@invoice), :class => 'text-warning' %> | <%= link_to 'All invoices', invoices_path %></p>
+            <p class="lead">
+              <% if @client.email.present? %>
+                <%= link_to 'Send Invoice', {:action =>'mail', :id => @invoice.rand}, class: 'text-success' %> | 
+              <% end %>
+              <%= link_to 'Edit', edit_invoice_path(@invoice), :class => 'text-warning' %> | 
+              <%= link_to 'All invoices', invoices_path %>
+            </p>
           </div>
         </div>
         <hr>
       <% end %>
       <div class="row-fluid">
         <div class="span12 center space-bottom">
-          <%= link_to 'Printable PDF', invoice_path(@invoice, :format => :pdf), :class => 'btn' %>
+          <%= link_to '<i class="icon-file"></i> Printable PDF'.html_safe, invoice_path(@invoice, :format => :pdf), :class => 'btn' %>
         </div>
       </div>
       <div class="row-fluid">
@@ -126,6 +133,7 @@
           <p>Travel: <span class="pull-right"><%= '$'+@invoice.travel.to_s if @invoice.travel.present? %></span></p>
           <p>Other: <span class="pull-right"><%= '$'+@invoice.other.to_s if @invoice.other.present? %></span></p>
           <p>Previous Paid: <span class="pull-right"><%= '- $'+@invoice.previous_paid.to_s if @invoice.previous_paid.present? %></span></p>
+          <p>Tax: <span class="pull-right"><%= '- $'+@tax if @tax.present? %></span></p>
           <p class="lead">Total: <span class="pull-right">$<%= @total %></span></p>
         </div>
       </div>
@@ -147,7 +155,7 @@
       <footer>
         <div class="row-fluid space-top">
           <div class="span12 center">
-            <p>Made with <%= link_to 'Roninvoice', root_url, :class => 'brand' %></p>
+            <p>Made with <%= link_to 'Rōninvoice', root_url, :class => 'brand' %></p>
           </div>
         </div>
       </footer>

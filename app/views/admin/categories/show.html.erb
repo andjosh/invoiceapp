@@ -1,0 +1,12 @@
+<dl class="dl-horizontal">
+
+  <dt>name</dt>
+  <dd><%= @category.name %></dd>
+
+  <dt>Created at</dt>
+  <dd><%= l( @category.created_at, :format => :long_date ) %></dd>
+
+  <dt>Updated at</dt>
+  <dd><%= l( @category.updated_at, :format => :long_date ) %></dd>
+
+</dl>

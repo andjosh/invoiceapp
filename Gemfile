@@ -23,6 +23,7 @@ gem "wkhtmltopdf"
 gem "wkhtmltopdf-binary"
 gem 'omniauth-stripe-connect'
 gem 'figaro'
+gem 'taps'
 
 group :assets do
   gem "therubyracer", :platform => :ruby

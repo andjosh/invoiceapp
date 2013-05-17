@@ -6,6 +6,8 @@ class InvoicesController < ApplicationController
   # GET /invoices.json
   def index
     @invoices = current_user.invoices.order("updated_at DESC").page params[:page]
+    @unpaid = @invoices.where("paid = ?", false)
+    @paid = @invoices.where("paid = ?", true)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -23,6 +25,14 @@ class InvoicesController < ApplicationController
     @invoice.items.each do |i|
       @total += (i.rate * i.count).round(2)
     end
+    @total += @invoice.materials if @invoice.materials.present?
+    @total += @invoice.travel if @invoice.travel.present?
+    @total += @invoice.other if @invoice.other.present?
+    @total += @invoice.previous_paid if @invoice.previous_paid.present?
+    if @invoice.taxed? && @user.tax_rate.present?
+      @tax = @total * @user.tax_rate
+      @total += @tax
+    end
 
     respond_to do |format|
       format.html {render :layout => false}
@@ -31,6 +41,28 @@ class InvoicesController < ApplicationController
                 :template => '/invoices/pdf.html.erb',
                 :layout => false,
                 :handlers => [:erb]}
+    end
+  end
+
+  # MAIL the invoice
+  def mail
+    @invoice = Invoice.find_by_rand(params[:id])
+    @client = Client.find(@invoice.client_id)
+    @total = 0
+    @invoice.items.each do |i|
+      @total += (i.rate * i.count).round(2)
+    end
+    @total += @invoice.materials if @invoice.materials.present?
+    @total += @invoice.travel if @invoice.travel.present?
+    @total += @invoice.other if @invoice.other.present?
+    @total += @invoice.previous_paid if @invoice.previous_paid.present?
+    if @invoice.taxed? && @user.tax_rate.present?
+      @tax = @total * @user.tax_rate
+      @total += @tax
+    end
+    InvoiceMailer.mail_invoice(@client, @invoice, @total).deliver
+    respond_to do |format|
+      format.html { redirect_to invoices_url, notice: 'Invoice was successfully sent. Rake in that money.' }
     end
   end
 

@@ -28,16 +28,17 @@
             <%= p.link_to_remove "<i class='icon-remove-sign icon-large text-error'></i>".html_safe %>
         <% end %>
         <div class="clearfix"></div>
-        <p class="center space-bottom"><%= f.link_to_add "+ Add a line-item", :items, :class => 'space-bottom text-success' %></p>
-
-        <div class="input-prepend" style="display:inline;"><span class="add-on">$</span><%= f.text_field :travel, :placeholder => 'Travel', :id => 'prependedInput', :class => 'span2' %></div>
-        <div class="input-prepend" style="display:inline;"><span class="add-on">$</span><%= f.text_field :materials, :placeholder => 'Materials', :id => 'prependedInput', :class => 'span2' %></div>
-        <div class="input-prepend" style="display:inline;"><span class="add-on">$</span><%= f.text_field :previous_paid, :placeholder => 'Previously Paid', :id => 'prependedInput', :class => 'span2' %></div>
-        <div class="input-prepend" style="display:inline;"><span class="add-on">$</span><%= f.text_field :other, :placeholder => 'Other', :id => 'prependedInput', :class => 'span2' %></div>
-        <%= f.label :taxed, "Apply tax?", :class=>"checkbox inline" %>
-        <%= f.check_box :taxed, :inline_label => 'Apply tax?', :label => false, :class => 'span1' %>
-        <%= f.label :paid, "Paid up?", :class=>"checkbox inline" %>
-        <%= f.check_box :paid, :inline_label => 'Paid?', :label => false, :class => 'span1' %>
+        <div class="add-item"><%= f.link_to_add "+ Add a line-item", :items, :class => 'text-success' %></div>
+        <div class="invoice-extras">
+          <div class="input-prepend" style="display:inline;"><span class="add-on">$</span><%= f.text_field :travel, :placeholder => 'Travel', :id => 'prependedInput', :class => 'span2' %></div>
+          <div class="input-prepend" style="display:inline;"><span class="add-on">$</span><%= f.text_field :materials, :placeholder => 'Materials', :id => 'prependedInput', :class => 'span2' %></div>
+          <div class="input-prepend" style="display:inline;"><span class="add-on">$</span><%= f.text_field :previous_paid, :placeholder => 'Previously Paid', :id => 'prependedInput', :class => 'span2' %></div>
+          <div class="input-prepend" style="display:inline;"><span class="add-on">$</span><%= f.text_field :other, :placeholder => 'Other', :id => 'prependedInput', :class => 'span2' %></div>
+          <%= f.label :taxed, "Apply tax?", :class=>"checkbox inline" %>
+          <%= f.check_box :taxed, :inline_label => 'Apply tax?', :label => false, :class => 'span1' %>
+          <%= f.label :paid, "Paid up?", :class=>"checkbox inline" %>
+          <%= f.check_box :paid, :inline_label => 'Paid?', :label => false, :class => 'span1' %>
+        </div>
 
         <div class="actions space-top">
           <div class="center"><%= f.submit "Enter", :class => "btn btn-primary span4" %></div>

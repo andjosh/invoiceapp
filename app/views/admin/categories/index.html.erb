@@ -1,0 +1,35 @@
+<h1 class="center">Categories</h1>
+
+<%= form_for @search, :url => admin_categories_path, :html => { :method => :get, :class => "form-search" } do |f| %>
+  <%= f.text_field :name_contains, :class => "input-medium" %>
+  <%= f.submit "Search", :class => "btn btn-primary" %>
+<% end %>
+
+<table class="sortable table table-condensed">
+  <thead>
+    <tr>
+      <th><%= sortable "id" %></th>
+      <th><%= sortable "name" %></th>
+      <th><%= sortable "created_at" %></th>
+      <th>Edit</th>
+      <th>Destroy</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @categories.each do |cat| %>
+      <tr class="user">
+        <td><%= link_to(cat.id, admin_category_path(cat)) %></td>
+        <td><%= link_to(cat.name, admin_category_path(cat)) %></td>
+        <td><%= l( cat.created_at, :format => :short_date ) %></td>
+        <td><%= link_to 'Edit', edit_admin_category_path(cat) %></td>
+        <td><%= link_to 'Destroy', admin_category_path(cat), :data => { :confirm => 'Are you sure?' }, :method => :delete %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<div class="center">
+  <%= link_to '+ New Category', new_admin_category_path, :class => 'text-success' %>
+</div>
+
+<%= paginate @categories %>

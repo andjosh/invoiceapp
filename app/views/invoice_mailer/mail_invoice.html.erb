@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>Invoice from <%= @invoice.user.name %> via Roninvoice</title>
+  <meta name="viewport" content="width=device-width" />
+  <style type="text/css">
+  body, td { color:#000000; font-size:14px; font-family:Arial, Verdana;word-wrap:break-word; }
+  .divider { background-color:#e5e4e4; height:1px; }
+  .episode h2 { margin-top:0; margin-bottom:8px; font-size:18px; color:#000000 !important; }
+  .episode p { margin:8px 0; }
+  .episode img { border:solid 1px #777777; }
+  .episode .duration { font-size:11px;color:#555555; }
+  #footer { font-size:11px; color:#555555; }
+  #footer a { color:#555555;}
+  .avatar {border-radius: 100px; border-radius: 100px; -webkit-border-radius: 100px; vertical-align: middle; margin-right:10px;height:80px;width:80px;}
+  .message{ background-color:#f6f6f6; -webkit-border-radius: 5px;
+border-radius: 5px; width:100%; padding:20px;}
+  </style>
+</head>
+<body>
+  <table width="100%" id="background" border="0" cellpadding="0" cellspacing="0">
+    <tr><td align="center" valign="top">
+      <table width="100%" id="main" border="0" cellpadding="0" cellspacing="20">
+        <tr>
+          <td id="header" colspan="2">
+            <div style="text-align:center;">
+              <a href="http://roninvoice.com/" title="Roninvoice"><img src="<%= @invoice.user.image.present? ? @invoice.user.image : 'http://roninvoice.com/assets/login.png' %>" class="avatar"/><br>Rōninvoice</a>
+            </div>
+            <h2>Hi <%= @client.name %>!</h2>
+            <h2>You have an invoice from <%= @invoice.user.name %> for the amount of $<%= @total.round %>, with payment due <%= l @invoice.updated_at+21.days, :format => :short_date %>.</h2>
+            <h2>You can view and pay it at: <%= invoice_url(@invoice) %></h2>
+            <h4>Have a nice day!</h4>
+          </td>
+        </tr>
+        <tr>
+          <td class="divider" colspan="2" bgcolor="#555555" height="2"></td>
+        </tr>
+        <tr>
+          <td id="footer" colspan="2" align="center">
+            <p>&copy;2013 Rōninvoice</p>
+          </td>
+        </tr>
+      </table>
+    </td></tr>
+  </table>
+</body>
+</html>
