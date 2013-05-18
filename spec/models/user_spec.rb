@@ -30,6 +30,7 @@
 #  str_uid                :string(255)
 #  str_token              :string(255)
 #  str_pub                :string(255)
+#  experience             :float
 #
 
 require 'spec_helper'

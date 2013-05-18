@@ -24,6 +24,7 @@ gem "wkhtmltopdf-binary"
 gem 'omniauth-stripe-connect'
 gem 'figaro'
 gem 'taps'
+gem 'sqlite3'
 
 group :assets do
   gem "therubyracer", :platform => :ruby

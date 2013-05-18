@@ -27,6 +27,7 @@
     <style>
       body {color:#222;padding-top: 0px;margin-top: 20px;background-color: #fff;}
       .btn{background:#ddd;border:none;box-shadow:none;}
+      .btn-success{background: #468847; color:#fff;}
     </style>
 
     <%= csrf_meta_tag %>
@@ -57,7 +58,7 @@
       <% end %>
       <div class="row-fluid">
         <div class="span12 center space-bottom">
-          <%= link_to '<i class="icon-file"></i> Printable PDF'.html_safe, invoice_path(@invoice, :format => :pdf), :class => 'btn' %>
+          <%= link_to '<i class="icon-file"></i> Printable PDF'.html_safe, invoice_path(@invoice, :format => :pdf), :class => 'btn' %> <%= link_to '<i class="icon-signin"></i> Pay now'.html_safe, @invoice.paypal_url(@user.email, @invoice, payment_notifications_url), class: 'btn btn-success' unless @invoice.paid? %>
         </div>
       </div>
       <div class="row-fluid">
@@ -77,15 +78,15 @@
       <div class="row-fluid">
         <div class="span6">
           <h4><%= @client.company_name.present? ? @client.company_name : @client.name %></h4>
+          <p><small>Attn:</small> <%= @client.name %><%= ', '+@client.title if @client.title.present? %>
+          <br><%= @client.email %></p>
           <address>
             <%= @client.address if present? %><br>
-            <%= @client.city if present? %>, <%= @client.state if present? %> <%= @client.zip if present? %><br>
+            <%= @client.city+', ' if @client.city.present? %><%= @client.state if present? %> <%= @client.zip if present? %><br>
           <%= 'Tel: '+@client.phone if @client.phone.present? %><br>
           <%= 'Office: '+@client.office_phone if @client.office_phone.present? %><br>
           <%= link_to @client.website, @client.website %>
           </address>
-          <p><small>Attn:</small> <%= @client.name %><%= ', '+@client.title if @client.title.present? %></p>
-          <p><%= @client.email %></p>
         </div>
         <div class="span6">
           <p><small>Description:</small> <%= @invoice.description %></p>

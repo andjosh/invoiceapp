@@ -35,4 +35,23 @@ class Invoice < ActiveRecord::Base
     "#{rand}".parameterize
   end
 
+  def paypal_url(seller, return_url, notify_url)
+    values = {
+      :business => seller,
+      :cmd => '_cart',
+      :upload => 1,
+      :return => return_url,
+      :invoice => id,
+      :notify_url => notify_url
+    }
+    items.each_with_index do |item, index|
+      values.merge!({
+        "amount_#{index+1}" => item.rate,
+        "item_name_#{index+1}" => item.name,
+        "quantity_#{index+1}" => item.count.to_i
+      })
+    end
+    "https://www.sandbox.paypal.com/cgi-bin/webscr?" + values.to_query
+  end
+
 end
