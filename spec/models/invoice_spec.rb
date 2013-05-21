@@ -17,6 +17,7 @@
 #  previous_paid :float
 #  materials     :float
 #  other         :float
+#  paid_at       :datetime
 #
 
 require 'spec_helper'

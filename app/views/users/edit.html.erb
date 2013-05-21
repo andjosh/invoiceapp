@@ -29,7 +29,9 @@
         <%= f.text_field :zip, :placeholder => "Zip", :class => "span2" %>
         <%= f.phone_field :phone, :placeholder => "Phone", :class => "span2" %>
         <%= f.phone_field :office_phone, :placeholder => "Office Phone", :class => "span2" %>
-        <div class="input-append"><%= f.text_field :tax, :placeholder => "Tax rate (optional)", :class => "span2", :id => 'appendedInput' %><span class="add-on">%</span></div>
+        <br>
+        <%= f.phone_field :email_paypal, :placeholder => "PayPal merchant email address", :class => "span4" %>
+        <span class="input-append"><%= f.text_field :tax, :placeholder => "Tax rate (optional)", :class => "span2", :id => 'appendedInput' %><span class="add-on">%</span></span>
         <br>
         <div class="center"><%= f.submit "Update your information", :class => "btn btn-primary span4" %></div>
       </div>

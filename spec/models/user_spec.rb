@@ -31,6 +31,7 @@
 #  str_token              :string(255)
 #  str_pub                :string(255)
 #  experience             :float
+#  email_paypal           :string(255)
 #
 
 require 'spec_helper'

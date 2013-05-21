@@ -31,6 +31,7 @@
 #  str_token              :string(255)
 #  str_pub                :string(255)
 #  experience             :float
+#  email_paypal           :string(255)
 #
 
 class User < ActiveRecord::Base
@@ -42,7 +43,7 @@ class User < ActiveRecord::Base
   devise :omniauthable
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me, :name, :company_name, :address, :city, :state, :zip, :phone, :office_phone, :image, :about, :website, :tax
+  attr_accessible :email, :password, :password_confirmation, :remember_me, :name, :company_name, :address, :city, :state, :zip, :phone, :office_phone, :image, :about, :website, :tax, :experience, :email_paypal
 
   has_and_belongs_to_many :roles
   has_many :clients

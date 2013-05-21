@@ -17,10 +17,11 @@
 #  previous_paid :float
 #  materials     :float
 #  other         :float
+#  paid_at       :datetime
 #
 
 class Invoice < ActiveRecord::Base
-  attr_accessible :description, :number, :rand, :client_id, :user_id, :title, :paid, :items_attributes, :taxed, :travel, :materials, :previous_paid, :other
+  attr_accessible :description, :number, :rand, :client_id, :user_id, :title, :paid, :items_attributes, :taxed, :travel, :materials, :previous_paid, :other, :paid_at
 
   validates :rand, :uniqueness => true
   belongs_to :user
@@ -51,7 +52,7 @@ class Invoice < ActiveRecord::Base
         "quantity_#{index+1}" => item.count.to_i
       })
     end
-    "https://www.sandbox.paypal.com/cgi-bin/webscr?" + values.to_query
+    "https://www.paypal.com/cgi-bin/webscr?" + values.to_query
   end
 
 end
