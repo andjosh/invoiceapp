@@ -132,7 +132,7 @@
           <p>Travel: <span class="pull-right"><%= '$'+@invoice.travel.to_s if @invoice.travel.present? %></span></p>
           <p>Other: <span class="pull-right"><%= '$'+@invoice.other.to_s if @invoice.other.present? %></span></p>
           <p>Previous Paid: <span class="pull-right"><%= '- $'+@invoice.previous_paid.to_s if @invoice.previous_paid.present? %></span></p>
-          <p>Tax: <span class="pull-right"><%= '- $'+@tax if @tax.present? %></span></p>
+          <p>Tax: <span class="pull-right"><%= '$'+@tax.to_s if @tax.present? %></span></p>
           <p class="lead">Total: <span class="pull-right">$<%= @total %></span></p>
         </div>
       </div>
