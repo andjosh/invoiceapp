@@ -30,7 +30,7 @@ class InvoicesController < ApplicationController
     @total += @invoice.other if @invoice.other.present?
     @total += @invoice.previous_paid if @invoice.previous_paid.present?
     if @invoice.taxed? && @user.tax.present?
-      @tax = @total * @user.tax
+      @tax = @total * (@user.tax * 0.01)
       @total += @tax
     end
 
