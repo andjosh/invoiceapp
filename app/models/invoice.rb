@@ -36,7 +36,7 @@ class Invoice < ActiveRecord::Base
     "#{rand}".parameterize
   end
 
-  def paypal_url(seller, return_url, notify_url)
+  def paypal_url(seller, return_url, notify_url, total)
     values = {
       :business => seller,
       :cmd => '_cart',
@@ -50,6 +50,20 @@ class Invoice < ActiveRecord::Base
         "amount_#{index+1}" => item.rate,
         "item_name_#{index+1}" => item.name,
         "quantity_#{index+1}" => item.count.to_i
+      })
+    end
+    other = (materials.to_f + travel.to_f + other.to_f - previous_paid.to_f)
+    values.merge!({
+      "amount_#{items.count+1}" => other,
+      "item_name_#{items.count+1}" => 'Other',
+      "quantity_#{items.count+1}" => 1
+      })
+    if taxed?
+      tax = (total * user.tax.to_f * 0.01).round(2)
+      values.merge!({
+        "amount_#{items.count+2}" => tax,
+        "item_name_#{items.count+2}" => 'Tax',
+        "quantity_#{items.count+2}" => 1
       })
     end
     "https://www.paypal.com/cgi-bin/webscr?" + values.to_query
